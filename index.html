@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Saadat Emilbekova</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#fff;--side:#f3f3f3;--bar:#2c2c2c;--tab:#ececec;--fg:#262626;--dim:#6a6a6a;--hl:#eaf3ff;--line:#ddd;--acc:#0066b8;--str:#a31515;--glow:#0066b855;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1e1e1e;--side:#252526;--bar:#333;--tab:#2d2d2d;--fg:#d9d9d9;--dim:#9a9a9a;--hl:#2a2d3e;--line:#3c3c3c;--acc:#75beff;--str:#ce9178;--glow:#75beff66;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1e1e1e;--side:#252526;--bar:#333;--tab:#2d2d2d;--fg:#d9d9d9;--dim:#9a9a9a;--hl:#2a2d3e;--line:#3c3c3c;--acc:#75beff;--str:#ce9178;--glow:#75beff66;color-scheme:dark}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.7 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;flex-direction:column;overflow:hidden}
+.mono,.tabs,.sb,.side{font-family:"JetBrains Mono",Consolas,Menlo,monospace}
+.main{flex:1;display:flex;min-height:0}
+.act{width:50px;background:var(--bar);display:flex;flex-direction:column;align-items:center;padding-top:6px;flex:none}
+.act button{all:unset;width:50px;height:46px;display:grid;place-items:center;color:#fff;opacity:.5;cursor:pointer;transition:opacity .2s,transform .2s;position:relative}
+.act button svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:.2s}
+.act button:hover{opacity:1}
+.act button:hover svg{transform:translateY(-2px);filter:drop-shadow(0 0 5px #fff)}
+.act button.on{opacity:1;box-shadow:inset 2px 0 0 #fff}
+.act button:focus-visible{outline:1px solid #fff;outline-offset:-4px}
+.act button::after{content:attr(data-tip);position:absolute;left:54px;background:#252526;color:#ddd;font:12px "JetBrains Mono",monospace;padding:3px 9px;border:1px solid #454545;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:5}
+.act button:hover::after{opacity:1}
+.side{width:200px;background:var(--side);border-right:1px solid var(--line);flex:none;overflow:auto;font-size:12.5px}
+.side h4{margin:0;padding:10px 16px;font-size:11px;font-weight:400;color:var(--dim);letter-spacing:.06em}
+.side .dir{padding:2px 14px 4px;font-weight:500}
+.file{padding:3px 16px 3px 30px;cursor:pointer;transition:background .15s,color .15s;color:var(--dim)}
+.file:hover{background:var(--hl);color:var(--fg)}
+.file.on{background:var(--hl);color:var(--fg)}
+.edit{flex:1;display:flex;flex-direction:column;min-width:0}
+.tabs{display:flex;background:var(--side);overflow-x:auto;flex:none;scrollbar-width:none;font-size:12.5px}
+.tab{padding:8px 16px;background:var(--tab);color:var(--dim);cursor:pointer;white-space:nowrap;border-right:1px solid var(--line);border-top:1px solid transparent;transition:color .15s}
+.tab:hover{color:var(--fg)}
+.tab.on{background:var(--bg);color:var(--fg);border-top-color:var(--acc)}
+.page{flex:1;overflow:auto;padding:44px clamp(20px,6vw,72px) 80px}
+.wrap{max-width:68ch}
+h1{font-size:clamp(30px,5vw,42px);line-height:1.15;margin:0 0 6px;font-weight:600}
+.sub{color:var(--dim);margin:0 0 28px}
+p{margin:0 0 16px}
+a{color:var(--acc);text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--acc) 45%,transparent);text-underline-offset:3px;transition:text-shadow .2s,text-decoration-color .2s;cursor:pointer}
+a:hover{text-shadow:0 0 12px var(--glow),0 0 2px var(--glow);text-decoration-color:var(--acc)}
+.row{padding:16px 18px;margin:0 -18px 6px;box-shadow:inset 0 0 0 var(--acc);transition:background .2s,box-shadow .2s}
+.row:hover{background:var(--hl);box-shadow:inset 3px 0 0 var(--acc)}
+.row h3{margin:0;font-size:18px;font-weight:600;display:flex;justify-content:space-between;gap:16px;align-items:baseline;transition:text-shadow .2s}
+.row:hover h3{text-shadow:0 0 14px var(--glow)}
+.row h3 span{font:400 12.5px "JetBrains Mono",monospace;color:var(--dim);white-space:nowrap}
+.row p{margin:8px 0 0}
+.stack{font:400 12.5px "JetBrains Mono",monospace;color:var(--str);margin-top:8px}
+dl{margin:0}
+dl div{display:flex;gap:20px;padding:10px 18px;margin:0 -18px;transition:background .2s,box-shadow .2s;box-shadow:inset 0 0 0 var(--acc)}
+dl div:hover{background:var(--hl);box-shadow:inset 3px 0 0 var(--acc)}
+dt{width:150px;flex:none;font:400 13px "JetBrains Mono",monospace;color:var(--dim);padding-top:2px}
+dd{margin:0}
+dd small{color:var(--dim)}
+.sb{background:#007acc;color:#fff;display:flex;justify-content:space-between;padding:2px 12px;font-size:12px;flex:none;gap:12px;white-space:nowrap;overflow:hidden}
+.sb div{display:flex;gap:16px;align-items:center}
+#theme{cursor:pointer}
+.sb span{transition:text-shadow .2s}.sb span:hover{text-shadow:0 0 8px #fff}
+.pet{display:inline-block}.pet:hover{animation:hop .5s}
+@keyframes hop{40%{transform:translateY(-5px) rotate(-10deg)}}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.edit{position:relative}.tabs,.page{position:relative;z-index:1}
+#nano{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+@media (max-width:700px){.side{display:none}.act{width:42px}.act button{width:42px}.act button::after{display:none}.sb .hide{display:none}dl div{flex-direction:column;gap:2px}dt{width:auto}.row h3{flex-direction:column;gap:2px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="main">
+  <nav class="act" id="act" aria-label="Sections"></nav>
+  <nav class="side" id="side"><h4>EXPLORER</h4><div class="dir">v saadat</div></nav>
+  <div class="edit"><canvas id="nano" aria-hidden="true"></canvas>
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <main class="page" id="page"></main>
+  </div>
+</div>
+<div class="sb">
+  <div><span>main</span><span class="hide">Rowan University</span></div>
+  <div><span id="where">About</span><span id="theme" role="button" tabindex="0">light/dark</span><span class="pet" title="meow">🐱</span></div>
+</div>
+<script>
+var P=[
+["about","About","about.md","<circle cx='12' cy='8' r='4'/><path d='M4 21c0-4 4-6 8-6s8 2 8 6'/>"],
+["projects","Projects","projects.md","<path d='M3 6h6l2 2h10v11H3z'/>"],
+["skills","Skills","skills.md","<path d='M8 7l-5 5 5 5M16 7l5 5-5 5M14 5l-4 14'/>"],
+["awards","Awards","awards.md","<path d='M7 4h10v5a5 5 0 01-10 0zM12 14v4M8 20h8'/>"],
+["contact","Contact","contact.md","<rect x='3' y='5' width='18' height='14' rx='2'/><path d='M3 7l9 6 9-6'/>"]];
+var PROJ=[
+["CONAN-F","November 2026","When an AI investigates a case it can sound certain and still be wrong. CONAN-F makes the AI turn every finding into a formal statement, then has the Lean 4 proof checker verify it. I built the whole pipeline, from pulling 335,000+ records out of the NIST CFReDS Data Leakage Case to checking proofs. All 473 certificates in the demo report verified independently, and it rejected all 24 of the false claims I planted. I also added stricter checks after finding that a valid proof could still back an incomplete answer, and built a workbench with timelines and evidence graphs so each finding traces back to its source.","Python, Lean 4, SQL, JavaScript, HTML/CSS","https://github.com/pauljiang03/conan"],
+["Sidekick Tracker","August 2026","An Android app that puts people on a live map and notices when someone is nearby. Location updates never stop arriving, which caused data races and thread conflicts. Fixing them cut synchronization overhead by 15%. Distances use the Haversine formula, and the map runs on OpenStreetMap without blocking any threads.","Java, Firebase, Android SDK","https://github.com/Taygeta-gl/Sidekick"],
+["Bulga","May 2026","A budgeting app that draws your spending as a graph of connected nodes instead of a table. I wrote the recursive traversal for nested categories and kept search and updates at O(log n), so deep branches stay smooth. Alerts fire in under 5 ms when spending outruns a limit, and users spent about 35% less time than with regular planners.","Java, physics engine","https://github.com/Taygeta-gl/Bulga---Smart-Budgeting-App"],
+["Sign language recognition","March 2026","Reads hand signs from live video. It pulls 3D hand landmarks from a 60 FPS stream, and my preprocessing cut feature-extraction latency by 18%. The classifier I trained reached 87% accuracy in real-time testing.","Python, OpenCV, MediaPipe","https://github.com/Taygeta-gl/sign_language"]];
+function row(t,d,b,s,u){return '<article class="row"><h3>'+t+'<span>'+d+'</span></h3><p>'+b+'</p><div class="stack">'+s+'</div><p style="margin-top:8px"><a href="'+u+'" target="_blank" rel="noopener">View on GitHub</a>'+(t==='CONAN-F'?' &nbsp; <a href="https://devpost.com/software/conan-f" target="_blank" rel="noopener">See it on Devpost</a>':'')+'</p></article>'}
+function dl(a){return '<dl>'+a.map(function(x){return '<div><dt>'+x[0]+'</dt><dd>'+x[1]+'</dd></div>'}).join('')+'</dl>'}
+var V={
+about:function(){return '<div class="wrap"><h1>Saadat Emilbekova</h1><p class="sub">Computer science student at Rowan University, graduating May 2028. Voorhees, NJ.</p>'+
+'<p>I like building things where being correct matters. The one I’m proudest of is CONAN-F, an AI that investigates computer evidence and has to prove every claim before anyone sees it. It won second place in Arlequin’s forensics sponsor track at HackPrinceton this fall, and you can <a href=\"https://devpost.com/software/conan-f\" target=\"_blank\" rel=\"noopener\">see it on Devpost</a>.</p>'+
+'<p>Before that I made an Android tracker that shows people on a live map, a budgeting app that draws your money as a graph, and a camera tool that recognizes sign language. Have a look at the <a data-go="projects">projects</a>, or <a data-go="contact">get in touch</a>.</p>'+
+'<p>My GPA is 3.9. I’ve also finished Harvard’s CS50x. Courses so far: operating systems, data structures and algorithms, algorithm design, databases, computer organization, programming languages and cyber security.</p></div>'},
+projects:function(){return '<div class="wrap"><h1>Projects</h1><p class="sub">Newest first.</p>'+PROJ.map(function(p){return row(p[0],p[1],p[2],p[3],p[4])}).join('')+'</div>'},
+skills:function(){return '<div class="wrap"><h1>Skills</h1><p class="sub">What I build with.</p>'+dl([["Languages","C++, Java (JavaFX), Python, Lean 4"],["Web","React, JavaScript, HTML5, CSS3"],["Databases","MySQL, SQL"],["Tools","Git, GitHub, Linux/Unix, Windows, Android"],["Design","Figma and Canva, for UI/UX and prototyping"],["Working style","Teamwork, project management, problem-solving"],["Certification","CS50x: Introduction to Computer Science, Harvard University (2026)"]])+'</div>'},
+awards:function(){return '<div class="wrap"><h1>Awards</h1><p class="sub">&nbsp;</p>'+dl([["Nov 2026","<b>2nd place, Arlequin sponsor track (Forensics), HackPrinceton Fall 2026</b><br><small>Won with CONAN-F. <a href=\"https://devpost.com/software/conan-f\" target=\"_blank\" rel=\"noopener\">See the project on Devpost</a></small>"],["Rowan","<b>President’s List</b><br><small>Rowan University</small>"],["2024 to now","<b>Brown and Gold Scholarship</b>"]])+'</div>'},
+contact:function(){return '<div class="wrap"><h1>Contact</h1><p class="sub">Email is the fastest way to reach me.</p>'+dl([["Email","<a href=\"mailto:emilbe76@rowan.edu\">emilbe76@rowan.edu</a>"],["LinkedIn","<a href=\"https://linkedin.com/in/saadat\" target=\"_blank\" rel=\"noopener\">linkedin.com/in/saadat</a>"],["GitHub","<a href=\"https://github.com/Taygeta-gl\" target=\"_blank\" rel=\"noopener\">github.com/Taygeta-gl</a>"]])+'</div>'}};
+var act=document.getElementById('act'),side=document.getElementById('side'),tabs=document.getElementById('tabs'),page=document.getElementById('page'),where=document.getElementById('where');
+P.forEach(function(p){
+  act.insertAdjacentHTML('beforeend','<button data-id="'+p[0]+'" data-tip="'+p[1]+'" aria-label="'+p[1]+'"><svg viewBox="0 0 24 24">'+p[3]+'</svg></button>');
+  side.insertAdjacentHTML('beforeend','<div class="file" data-id="'+p[0]+'" tabindex="0">'+p[2]+'</div>');
+  tabs.insertAdjacentHTML('beforeend','<div class="tab" data-id="'+p[0]+'" tabindex="0" role="tab">'+p[2]+'</div>');
+});
+function open(id){
+  if(!V[id])id='about';
+  page.innerHTML=V[id]();page.scrollTop=0;scramble();
+  document.querySelectorAll('[data-id]').forEach(function(e){e.classList.toggle('on',e.dataset.id===id)});
+  where.textContent=P.filter(function(p){return p[0]===id})[0][2];
+  document.title=P.filter(function(p){return p[0]===id})[0][1]+' – Saadat Emilbekova';
+  try{history.replaceState(null,'','#'+id)}catch(e){}
+}
+document.addEventListener('click',function(e){var el=e.target.closest('[data-id],[data-go]');if(el)open(el.dataset.id||el.dataset.go)});
+document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.matches('.file,.tab,#theme')){e.preventDefault();e.target.click()}});
+document.getElementById('theme').addEventListener('click',function(){
+  var r=document.documentElement,d=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;
+  r.dataset.theme=d?'light':'dark';
+});
+function scramble(){var h=page.querySelector('h1');if(!h||matchMedia('(prefers-reduced-motion:reduce)').matches)return;var t=h.textContent,i=0,g='01<>/{}[]#$%&*=+',iv=setInterval(function(){h.textContent=t.split('').map(function(ch,k){return ch===' '||k<i?ch:g[Math.random()*g.length|0]}).join('');i+=.6;if(i>=t.length){h.textContent=t;clearInterval(iv)}},30)}
+(function(){
+var c=document.getElementById('nano'),x=c.getContext('2d'),W=0,H=0,pts=[],m={x:-999,y:-999},rip=[],col='0,102,184',tick=0,rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function css(){var h=getComputedStyle(document.documentElement).getPropertyValue('--acc').trim().replace('#','');if(h.length===6)col=parseInt(h.slice(0,2),16)+','+parseInt(h.slice(2,4),16)+','+parseInt(h.slice(4,6),16)}
+function size(){var r=c.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2);W=r.width;H=r.height;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0);var N=Math.min(120,Math.round(W*H/10000));while(pts.length<N)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,r:Math.random()*1.5+.8});pts.length=N;if(rm)draw()}
+function draw(){
+ x.clearRect(0,0,W,H);if(++tick%40===1)css();
+ rip=rip.filter(function(q){q.r+=5;return q.r<320});
+ pts.forEach(function(p){
+  var dx=m.x-p.x,dy=m.y-p.y,d=Math.sqrt(dx*dx+dy*dy)||1;
+  if(d<200&&!rm){p.vx+=dx/d*.025;p.vy+=dy/d*.025}
+  rip.forEach(function(q){var rx=p.x-q.x,ry=p.y-q.y,rd=Math.sqrt(rx*rx+ry*ry)||1;if(Math.abs(rd-q.r)<26){p.vx+=rx/rd*.6;p.vy+=ry/rd*.6}});
+  var s=Math.sqrt(p.vx*p.vx+p.vy*p.vy);if(s>1.6){p.vx*=1.6/s;p.vy*=1.6/s}
+  p.vx*=.985;p.vy*=.985;if(s<.15){p.vx+=(Math.random()-.5)*.05;p.vy+=(Math.random()-.5)*.05}
+  if(!rm){p.x+=p.vx;p.y+=p.vy}
+  if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+ });
+ x.lineWidth=1;
+ for(var i=0;i<pts.length;i++){var a=pts[i];
+  for(var j=i+1;j<pts.length;j++){var b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=dx*dx+dy*dy;
+   if(d<14400){var al=(1-Math.sqrt(d)/120)*.3;x.strokeStyle='rgba('+col+','+al+')';x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
+  var mx=m.x-a.x,my=m.y-a.y,md=Math.sqrt(mx*mx+my*my),near=md<180?1-md/180:0;
+  if(near){x.strokeStyle='rgba('+col+','+near*.7+')';x.lineWidth=1.3;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(m.x,m.y);x.stroke();x.lineWidth=1}
+  x.fillStyle='rgba('+col+','+(.45+near*.55)+')';x.beginPath();x.arc(a.x,a.y,a.r+near*2,0,6.283);x.fill();
+ }
+ rip.forEach(function(q){x.strokeStyle='rgba('+col+','+(1-q.r/320)*.5+')';x.beginPath();x.arc(q.x,q.y,q.r,0,6.283);x.stroke()});
+}
+function loop(){if(!document.hidden)draw();requestAnimationFrame(loop)}
+new ResizeObserver(size).observe(c);size();css();
+if(!rm){loop();
+ document.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();m.x=e.clientX-r.left;m.y=e.clientY-r.top});
+ document.addEventListener('pointerleave',function(){m.x=m.y=-999});
+ document.addEventListener('pointerdown',function(e){var r=c.getBoundingClientRect(),px=e.clientX-r.left,py=e.clientY-r.top;if(px>=0&&py>=0&&px<=W&&py<=H)rip.push({x:px,y:py,r:0})});
+}
+})();
+open((location.hash||'#about').slice(1));
+</script>
+</body>
+</html>
