@@ -3,7 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Saadat Emilbekova</title>
+<title>Saadat Emilbekova | Computer Science Student at Rowan University</title>
+<meta name="description" content="Saadat Emilbekova is a computer science student at Rowan University. Portfolio of projects including CONAN-F, an AI forensic investigator with formal verification, and 2nd place winner at HackPrinceton Fall 2026.">
+<meta property="og:title" content="Saadat Emilbekova | Computer Science Student at Rowan University">
+<meta property="og:description" content="Projects in AI, formal verification, Android and computer vision.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Saadat Emilbekova","jobTitle":"Computer Science Student","affiliation":{"@type":"CollegeOrUniversity","name":"Rowan University"},"url":"https://taygeta-gl.github.io/Portfolio/","sameAs":["https://github.com/Taygeta-gl","https://linkedin.com/in/saadat","https://devpost.com/software/conan-f"]}</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 :root{--bg:#fff;--side:#f3f3f3;--bar:#2c2c2c;--tab:#ececec;--fg:#262626;--dim:#6a6a6a;--hl:#eaf3ff;--line:#ddd;--acc:#0066b8;--str:#a31515;--glow:#0066b855;
@@ -73,7 +78,7 @@ dd small{color:var(--dim)}
   <nav class="side" id="side"><h4>EXPLORER</h4><div class="dir">v saadat</div></nav>
   <div class="edit"><canvas id="nano" aria-hidden="true"></canvas>
     <div class="tabs" id="tabs" role="tablist"></div>
-    <main class="page" id="page"></main>
+    <main class="page" id="page"><div class="wrap"><h1>Saadat Emilbekova</h1><p class="sub">Computer science student at Rowan University, graduating May 2028. Voorhees, NJ.</p><p>Projects: CONAN-F (AI forensic investigator with formal verification, 2nd place in the Arlequin sponsor track at HackPrinceton Fall 2026), Sidekick Tracker (Android), Bulga (graph-based finance tracker) and a real-time sign language recognition system.</p><p><a href="https://github.com/Taygeta-gl">GitHub</a> | <a href="https://linkedin.com/in/saadat">LinkedIn</a> | <a href="https://devpost.com/software/conan-f">CONAN-F on Devpost</a></p></div></main>
   </div>
 </div>
 <div class="sb">
@@ -114,7 +119,7 @@ function open(id){
   page.innerHTML=V[id]();page.scrollTop=0;scramble();
   document.querySelectorAll('[data-id]').forEach(function(e){e.classList.toggle('on',e.dataset.id===id)});
   where.textContent=P.filter(function(p){return p[0]===id})[0][2];
-  document.title=P.filter(function(p){return p[0]===id})[0][1]+' – Saadat Emilbekova';
+  document.title=id==='about'?'Saadat Emilbekova | Computer Science Student at Rowan University':P.filter(function(p){return p[0]===id})[0][1]+' – Saadat Emilbekova';
   try{history.replaceState(null,'','#'+id)}catch(e){}
 }
 document.addEventListener('click',function(e){var el=e.target.closest('[data-id],[data-go]');if(el)open(el.dataset.id||el.dataset.go)});
